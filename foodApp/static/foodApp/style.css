@@ -205,10 +205,18 @@ a{
     background-color:#EA4335 ;
 }
 /* edit form style */
+.edit-form-container{
+    display: flex;
+    justify-content: center;
+    
+
+}
 .add-item-form{
     display: flex;
     flex-direction: column;
+    
     gap: 1rem;
+    max-width: 500px;
 }
 
 /* delete form styling */

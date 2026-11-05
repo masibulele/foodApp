@@ -3,13 +3,17 @@
 
 
 {% block body %}
-<form  class="add-item-form" method="post">
+<div class="edit-form-container">
+    <form  class="add-item-form" method="post">
     {% csrf_token %}
     {{form}}
     <button type="submit" class="btn-details submit-btn">
         Save changes
     </button>
 </form>
+
+</div>
+
 
 
 {%endblock%}
