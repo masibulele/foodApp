@@ -1,0 +1,36 @@
+{% extends 'foodApp/base.html'%}
+{%load static %}
+
+
+{% block body %}
+<div class="details-container">
+    <div class="product-container-details">
+    <div class="img-wrapper">
+        <img src="{{item.item_image}}" alt="">
+    </div>
+    <div class="product-details">
+        <h3 class="product-details-title">
+            {{item.item_name}}
+        </h3>
+        <div class="product-details-desc">
+            <p>
+                {{item.item_desc}}
+            </p>
+
+        </div>
+        <div class="product-details-price product-price">
+            R{{item.item_price}}
+        </div>
+        <div class="btn-container">
+            <a href="{% url 'foodApp:edit' item.id %}" class="btn-details edit-btn">Edit</a>
+            <a href="{% url 'foodApp:delete' item.id %}" class="btn-details del-btn ">Delete</a>
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+{%endblock%}

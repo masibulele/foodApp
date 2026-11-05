@@ -1,0 +1,70 @@
+
+{% extends 'foodApp/base.html'%}
+{%load static %}
+
+{% block body %}
+<div class="main-container">
+    <div class="landing-page-container">
+        <div class="text-container">
+            <h1 class="title-header">Fresh, delicious foods for your health & fitness</h1>
+            <p class="header-text">
+                Nourish your body with wholesome, nutrient-rich foods designed to support a healthier lifestyle. 
+                Our carefully selected range of health foods combines natural ingredients, great taste, and essential nutrients to help you feel your best every day. 
+            </p>
+        </div>
+        <div class="img-container">
+            <img src="{% static 'foodApp\images\Designer.png' %}" alt="" class="landing-page-img">
+
+        </div>
+    </div>
+    <div class="products-container">
+        <h2 class="product-title">Popular meals</h2>
+        <div class="product-card-container">
+            {%for item in items_list %}
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="{{item.item_image}}" alt="" class="product-img">
+                </div>
+                <div class="product-details">
+                    <div class="product-title">
+                        {{item.item_name}}
+                    </div>
+                    <div class="product-price">
+                        R {{item.item_price}}
+                    </div>
+                    <a href="{% url 'foodApp:details' item.id%}" class="btn-details">
+                        learn More
+
+                    </a>
+                    
+
+                </div>
+            </div>
+            {%endfor%}
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="{% static 'foodApp\images\Designer.png' %}" alt="" class="product-img">
+                </div>
+                <div class="product-details">
+                    <div class="product-title">
+                        Summer bowl
+                    </div>
+                    <div class="product-price">
+                        R 39.99
+                    </div>
+                    <button class="btn-details">
+                        Add
+
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+{%endblock%}

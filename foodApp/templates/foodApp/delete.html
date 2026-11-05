@@ -1,0 +1,20 @@
+{% extends 'foodApp/base.html'%}
+{%load static %}
+
+{% block body %}
+<div class="delete-form-container">
+    <form class="add-item-form" method="post">
+    {% csrf_token %}
+    <h2 class="delete-title">
+        Are you sure you want to delete item?
+    </h2>
+    <button type="submit" class="btn-details del-btn">
+       Delete
+    </button>
+</form>
+
+</div>
+
+
+
+{%endblock%}

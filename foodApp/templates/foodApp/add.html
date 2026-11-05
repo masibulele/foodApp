@@ -1,0 +1,15 @@
+{% extends 'foodApp/base.html'%}
+{%load static %}
+
+
+{% block body %}
+<form action="" class="add-item-form" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="btn-details submit-btn">
+        Add item
+    </button>
+</form>
+
+
+{%endblock%}
