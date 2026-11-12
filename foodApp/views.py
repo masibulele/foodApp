@@ -1,10 +1,12 @@
 from django.shortcuts import render , redirect
 from . import models
 from .form import ItemForm
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
+@login_required
 def index(request):
     fooditems = models.Item.objects.all()
     context = {

@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'foodApp/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'foodApp/style.css' %}?v=7">
     <title>Food Application</title>
 </head>
-<body class="container">
+<body>
     <div class="nav-container">
         <div class="logo-container">
-            <a href="#" class="logo">
+            <a href="{% url 'foodApp:index'%}" class="logo">
             Organic Food
             </a>
 
         </div>
         
-        <details class="nav-menu">
+        <details class="nav-menu" open>
             <summary class="menu-toggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -28,6 +29,13 @@
                 <a href="#" class="menu-item">Home </a>
                 <a href="#" class="menu-item">Menu </a>
                 <a href="#" class="menu-item">blog </a>
+                <a href="{% url 'users:profile'%}" class="menu-item">{{user.username}}</a>
+                {%if user.is_authenticated %}
+                    <a href="{% url 'users:logout'%}" class="menu-item">logout </a>
+
+                {%else%}
+                    <a href="{% url 'users:login'%}" class="menu-item">login </a>
+                {%endif%}
                 <div class="social-containers">
                     <i class="fa-brands fa-facebook-f"></i>
                     <i class="fa-brands fa-x-twitter"></i>
@@ -36,9 +44,33 @@
         </details>
 
     </div>
+    <div>
+         {% if messages %}
+        {%for message in messages %}
+        <div class="p-4 mb-4 text-sm {% if message.tags == 'success' %}text-green-800 bg-green-50{% else %}text-blue-800 bg-blue-50{% endif %} rounded-lg" role="alert">
+            {{ message}}
+        </div>
+        {% endfor %}
+    {% endif%}
 
+    </div>
     {% block body%}
     {% endblock %}
-    
+
+    <script>
+        (() => {
+            const navMenu = document.querySelector(".nav-menu");
+            const desktopNavigation = window.matchMedia("(min-width: 769px)");
+            const syncNavigationState = () => {
+                if (navMenu instanceof HTMLDetailsElement) {
+                    navMenu.open = desktopNavigation.matches;
+                }
+            };
+
+            syncNavigationState();
+            desktopNavigation.addEventListener("change", syncNavigationState);
+        })();
+    </script>
+
 </body>
 </html>
